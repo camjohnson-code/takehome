@@ -1,24 +1,42 @@
 import './Card.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Card = ({ title, description, url, urlToImage, publishedAt }) => {
-  const placeholderImage = require('../../Images/placeholder.png');
-  const [imageLoaded, setImageLoaded] = useState(true);
+const Card = ({
+  setModalIsOpen,
+  title,
+  description,
+  urlToImage,
+  publishedAt,
+  content,
+  setTitle,
+  setImg,
+  setDescription,
+  setPublishedAt,
+  setContent,
+  url,
+  setUrl,
+}) => {
+  const handleClick = () => {
+    setTitle(title);
+    setDescription(description);
+    setPublishedAt(publishedAt);
+    setContent(content);
+    setImg(urlToImage);
+    setUrl(url);
+    setModalIsOpen(true);
+  };
 
   return (
     <article className='article'>
       <h2 className='article-title'>
-        <a className='article-link' href={`${url}`}>
+        <Link className='article-link' onClick={handleClick}>
           {title.split('via')[0]}
-        </a>
+        </Link>
       </h2>
-      <a className='article-link' href={`${url}`}>
-        <img
-          src={require('../../Images/placeholder.png')}
-          alt={title}
-          className='article-image'
-        />
-      </a>
+      <Link className='article-link' onClick={handleClick}>
+        <img src={urlToImage || require('../../Images/placeholder.jpg')} alt={title} className='article-image' />
+      </Link>
       <p className='article-date'>
         {new Date(publishedAt).toLocaleDateString(undefined, {
           month: 'short',
