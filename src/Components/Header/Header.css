@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  width: 100vw;
+  height: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(246, 246, 234);
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 3px solid black;
+}
+
+.header-item {
+  margin: 0 20px;
+}
