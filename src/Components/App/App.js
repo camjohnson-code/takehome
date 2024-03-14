@@ -1,47 +1,44 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import articles from '../../mockData';
 import Header from '../Header/Header';
-import Card from '../Card/Card';
-import Form from '../Form/Form';
 import ArticlesList from '../ArticlesList/ArticlesList';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const App = () => {
-  const [articleElements, setArticleElements] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const sortedArticles = articles.articles.toSorted(
-      (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-    );
-
-    const newArticleElements = sortedArticles
-      .slice(0, 9)
-      .map((article) => (
-        <Card
-          key={article.title}
-          title={article.title}
-          description={article.description}
-          url={article.url}
-          urlToImage={article.urlToImage}
-          publishedAt={article.publishedAt}
-        />
-      ));
-
-    setArticleElements(newArticleElements);
-  }, []);
+  const [title, setTitle] = useState('');
+  const [img, setImg] = useState('');
+  const [description, setDescription] = useState('');
+  const [publishedAt, setPublishedAt] = useState('');
+  const [content, setContent] = useState('');
+  const [url, setUrl] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <section className='news-feed'>
-      <Header setHasSearched={setHasSearched} setError={setError} />
+      <Header />
       <Router>
         <Routes>
           <Route
             path='/'
-            element={<ArticlesList articleElements={articleElements} />}
+            element={
+              <ArticlesList
+                title={title}
+                img={img}
+                description={description}
+                publishedAt={publishedAt}
+                content={content}
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                setTitle={setTitle}
+                setImg={setImg}
+                setDescription={setDescription}
+                setPublishedAt={setPublishedAt}
+                setContent={setContent}
+                setUrl={setUrl}
+                url={url}
+              />
+            }
           />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
