@@ -1,5 +1,4 @@
 import './ArticleDetails.css';
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ArticleDetails = ({
@@ -22,7 +21,11 @@ const ArticleDetails = ({
         <p className='close-button' onClick={handleClick}>
           X
         </p>
-        <img src={img || require('../../Images/placeholder.jpg')} alt={title} className='article-image' />
+        <img
+          src={img || require('../../Images/placeholder.jpg')}
+          alt={title}
+          className='article-image'
+        />
         <p className='detailed-article-description'>{description}</p>
         <p className='detailed-article-date'>
           {new Date(publishedAt).toLocaleDateString(undefined, {
@@ -31,16 +34,20 @@ const ArticleDetails = ({
             year: 'numeric',
           })}
         </p>
-        <p className='detailed-article-content'>{`${content
-          .split('…')[0]
-          .split('<ul>')
-          .join('')
-          .split('</ul>')
-          .join('')
-          .split('<li>')
-          .join('')
-          .split('</li>')
-          .join('')}…`}</p>
+        {content ? (
+          <p className='detailed-article-content'>{`${content
+            .split('…')[0]
+            .split('<ul>')
+            .join('')
+            .split('</ul>')
+            .join('')
+            .split('<li>')
+            .join('')
+            .split('</li>')
+            .join('')}…`}</p>
+        ) : (
+          <p className='detailed-article-content'>{content}</p>
+        )}
         <p className='detailed-article-link'>
           <Link target='#' to={url} className='detailed-article-link'>
             Click to view full article
