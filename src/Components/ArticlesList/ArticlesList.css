@@ -1,0 +1,23 @@
+.articles {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.articles-section-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.articles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.return-home-message {
+}

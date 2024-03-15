@@ -1,19 +1,25 @@
 import './Form.css';
 import { useState } from 'react';
 
-const Form = () => {
-  const [search, setSearch] = useState('');
+const Form = ({ setSearchQuery, setHasSearched }) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(searchValue);
+    setHasSearched(true);
+  };
 
   return (
     <form className='search-form'>
       <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
         className='search-bar'
         type='text'
         placeholder='Search for news'
       />
-      <button className='search-button' type='submit'>
+      <button onClick={handleSearch} className='search-button' type='submit'>
         Search
       </button>
     </form>

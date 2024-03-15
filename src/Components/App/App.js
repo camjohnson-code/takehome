@@ -13,16 +13,25 @@ const App = () => {
   const [content, setContent] = useState('');
   const [url, setUrl] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [hasSearched, setHasSearched] = useState(false);
 
   return (
     <section className='news-feed'>
-      <Header />
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        hasSearched={hasSearched}
+        setHasSearched={setHasSearched}
+      />
       <Router>
         <Routes>
           <Route
             path='/'
             element={
               <ArticlesList
+                searchQuery={searchQuery}
+                hasSearched={hasSearched}
                 title={title}
                 img={img}
                 description={description}
