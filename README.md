@@ -9,7 +9,6 @@ This is a simple news feed app built with React. It allows users to search for a
 - Search for articles by entering keywords in the search bar.
 - View a list of articles matching the search query.
 - Click on an article to view its details.
-- Navigate between different pages using the navigation bar.
 - Responsive design for mobile and desktop.
 
 ## Installation
